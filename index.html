@@ -7,6 +7,118 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <header>
+        <h1 id="logo">Library</h1>
+        <button id="addBook" class="tool-tip" data-tooltip="Add New Book">Add New+</button>
+    </header>
+    <div class="container">
+        <div class="card">
+            <div class="title">Books1</div>
+            <div class="author">Author1</div>
+            <div class="pages">Total Pages :100</div>
+            <button class="read toggled tool-tip" data-tooltip="Read Book Toggle"></button>
+            <button class="delete tool-tip" data-tooltip="Delete-Book"></button>
+        </div>
+        
+        <div class="card">
+            <div class="title">Books1</div>
+            <div class="author">Author1</div>
+            <div class="pages">Total Pages :100</div>
+            <button class="read"></button>
+            <button class="delete"></button>
+        </div>
+
+        <div class="card">
+            <div class="title">Books1</div>
+            <div class="author">Author1</div>
+            <div class="pages">Total Pages :100</div>
+            <button class="read"></button>
+            <button class="delete"></button>
+        </div>
+
+        <div class="card">
+            <div class="title">Books1</div>
+            <div class="author">Author1</div>
+            <div class="pages">Total Pages :100</div>
+            <button class="read"></button>
+            <button class="delete"></button>
+        </div>
+
+        <div class="card">
+            <div class="title">Books1</div>
+            <div class="author">Author1</div>
+            <div class="pages">Total Pages :100</div>
+            <button class="read"></button>
+            <button class="delete"></button>
+        </div>
+
+        <div class="card">
+            <div class="title">Books1</div>
+            <div class="author">Author1</div>
+            <div class="pages">Total Pages :100</div>
+            <button class="read"></button>
+            <button class="delete"></button>
+        </div>
+
+        <div class="card">
+            <div class="title">Books1</div>
+            <div class="author">Author1</div>
+            <div class="pages">Total Pages :100</div>
+            <button class="read"></button>
+            <button class="delete"></button>
+        </div>
+
+        <div class="card">
+            <div class="title">Books1</div>
+            <div class="author">Author1</div>
+            <div class="pages">Total Pages :100</div>
+            <button class="read"></button>
+            <button class="delete"></button>
+        </div>
+
+        <div class="card">
+            <div class="title">Books1</div>
+            <div class="author">Author1</div>
+            <div class="pages">Total Pages :100</div>
+            <button class="read"></button>
+            <button class="delete"></button>
+        </div>
+    </div>
+    <div class="translucent-overlay hidden">
+        
+        <div class="form-container hidden">
+            <h2>Add a New Book</h2>
+            <form>
+                <div class="form-group">
+                    <label for="bookTitle">Book Title:</label>
+                    <input type="text" id="bookTitle" name="bookTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="author">Author:</label>
+                    <input type="text" id="author" name="author" required>
+                </div>
+                <div class="form-group">
+                    <label for="pages">Pages:</label>
+                    <input type="number" id="pages" name="pages" required>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" id="readCheckbox" name="readCheckbox">
+                    <label for="readCheckbox">Read</label>
+                </div>
+                <button type="submit" class="submit-btn">Submit</button>
+                <button type="button" class="cancel-btn">Cancel</button>
+            </form>
+        </div>
+
+        <div class="popup-content hidden">
+            <h2>Confirm Delete</h2>
+            <p>Are you sure you want to delete this book?</p>
+            <div class="popup-buttons">
+              <button id="confirmDelete" class="popup-confirm-btn">Delete</button>
+              <button id="cancelDelete" class="popup-cancel-btn">Cancel</button>
+            </div>
+          </div>
+    </div>
     <!-- Script Tag -->
      <link rel="Script" href="script.js">
 </body>
