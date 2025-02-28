@@ -12,83 +12,20 @@
         <button id="addBook" class="tool-tip" data-tooltip="Add New Book">Add New+</button>
     </header>
     <div class="container">
-        <div class="card">
-            <div class="title">Books1</div>
-            <div class="author">Author1</div>
-            <div class="pages">Total Pages :100</div>
+        <div id="sampleBook" class="card">
+            <div class="title">Sample Book:)</div>
+            <div class="author">Ead Adyreal</div>
+            <div class="pages">Total Pages :100001111001</div>
             <button class="read toggled tool-tip" data-tooltip="Read Book Toggle"></button>
             <button class="delete tool-tip" data-tooltip="Delete-Book"></button>
         </div>
         
-        <div class="card">
-            <div class="title">Books1</div>
-            <div class="author">Author1</div>
-            <div class="pages">Total Pages :100</div>
-            <button class="read"></button>
-            <button class="delete"></button>
-        </div>
-
-        <div class="card">
-            <div class="title">Books1</div>
-            <div class="author">Author1</div>
-            <div class="pages">Total Pages :100</div>
-            <button class="read"></button>
-            <button class="delete"></button>
-        </div>
-
-        <div class="card">
-            <div class="title">Books1</div>
-            <div class="author">Author1</div>
-            <div class="pages">Total Pages :100</div>
-            <button class="read"></button>
-            <button class="delete"></button>
-        </div>
-
-        <div class="card">
-            <div class="title">Books1</div>
-            <div class="author">Author1</div>
-            <div class="pages">Total Pages :100</div>
-            <button class="read"></button>
-            <button class="delete"></button>
-        </div>
-
-        <div class="card">
-            <div class="title">Books1</div>
-            <div class="author">Author1</div>
-            <div class="pages">Total Pages :100</div>
-            <button class="read"></button>
-            <button class="delete"></button>
-        </div>
-
-        <div class="card">
-            <div class="title">Books1</div>
-            <div class="author">Author1</div>
-            <div class="pages">Total Pages :100</div>
-            <button class="read"></button>
-            <button class="delete"></button>
-        </div>
-
-        <div class="card">
-            <div class="title">Books1</div>
-            <div class="author">Author1</div>
-            <div class="pages">Total Pages :100</div>
-            <button class="read"></button>
-            <button class="delete"></button>
-        </div>
-
-        <div class="card">
-            <div class="title">Books1</div>
-            <div class="author">Author1</div>
-            <div class="pages">Total Pages :100</div>
-            <button class="read"></button>
-            <button class="delete"></button>
-        </div>
     </div>
     <div class="translucent-overlay hidden">
         
         <div class="form-container hidden">
             <h2>Add a New Book</h2>
-            <form>
+            <form id="bookForm">
                 <div class="form-group">
                     <label for="bookTitle">Book Title:</label>
                     <input type="text" id="bookTitle" name="bookTitle" required>
@@ -105,7 +42,7 @@
                     <input type="checkbox" id="readCheckbox" name="readCheckbox">
                     <label for="readCheckbox">Read</label>
                 </div>
-                <button type="submit" class="submit-btn">Submit</button>
+                <button id="submitBtn" type="submit" class="submit-btn">Submit</button>
                 <button type="button" class="cancel-btn">Cancel</button>
             </form>
         </div>
