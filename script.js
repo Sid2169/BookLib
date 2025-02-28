@@ -107,3 +107,31 @@ bookForm.addEventListener('submit', (event) => {
     formContainer.classList.add('hidden');
     translucentOverlay.classList.add('hidden');
 });
+
+//SAMPEL BOOK CONTROLS
+
+//Sample Book Read Toggle
+const sampleBook = document.getElementById('sampleBook');
+const sampleBookReadToggle = sampleBook.querySelector('.read');
+sampleBookReadToggle.addEventListener('click', () => {
+    if (!sampleBookReadToggle.classList.contains('toggled')) {
+        sampleBookReadToggle.classList.add('toggled');
+    }
+    else {
+        sampleBookReadToggle.classList.remove('toggled');
+    }
+})
+//Sample Book Delete button
+const sampleBookDel = sampleBook.querySelector('.delete');
+sampleBookDel.addEventListener('click', () => {
+    //Show delete confirmation popup
+    translucentOverlay.classList.remove('hidden');
+    popup.classList.remove('hidden');
+    //Confirm delete button functionality
+    const cnfrmDelBtn = document.getElementById('confirmDelete');
+    cnfrmDelBtn.addEventListener('click', () => {
+        sampleBook.remove();
+        translucentOverlay.classList.add('hidden');
+        popup.classList.add('hidden');
+    });
+});
