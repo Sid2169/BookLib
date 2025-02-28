@@ -135,3 +135,12 @@ sampleBookDel.addEventListener('click', () => {
         popup.classList.add('hidden');
     });
 });
+
+//Form Cacel Button
+const cancelFormBtn = document.querySelector('.cancel-btn');
+cancelFormBtn.addEventListener('click', () => {
+     //Reset and hide form after submission
+     bookForm.reset();
+     formContainer.classList.add('hidden');
+     translucentOverlay.classList.add('hidden');
+})
