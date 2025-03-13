@@ -669,3 +669,7 @@ cancelFormBtn.addEventListener('click', () => {
 
 **Thank you for checking out My Books!** If you have any questions or suggestions, feel free to reach out or contribute to the project.
 
+
+## Additional Notes
+
+- **search and filter** — Verify the change in both development and production builds.
