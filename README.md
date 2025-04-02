@@ -674,3 +674,4 @@ cancelFormBtn.addEventListener('click', () => {
 
 - **search and filter** — Verify the change in both development and production builds.
 - **form validation** — Update the documentation if the visible behavior changes.
+- **live demo** — Note any external service limits or required keys.
