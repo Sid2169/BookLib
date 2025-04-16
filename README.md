@@ -676,3 +676,4 @@ cancelFormBtn.addEventListener('click', () => {
 - **form validation** — Update the documentation if the visible behavior changes.
 - **live demo** — Note any external service limits or required keys.
 - **book cards** — Check the required environment values before deploying.
+- **CSS layout** — Prefer small, focused changes over broad rewrites.
