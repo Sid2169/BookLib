@@ -678,3 +678,4 @@ cancelFormBtn.addEventListener('click', () => {
 - **book cards** — Check the required environment values before deploying.
 - **CSS layout** — Prefer small, focused changes over broad rewrites.
 - **HTML structure** — Check the layout when the catalog is empty.
+- **JavaScript logic** — Check the required environment values before deploying.
