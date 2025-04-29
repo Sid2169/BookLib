@@ -682,3 +682,4 @@ cancelFormBtn.addEventListener('click', () => {
 - **CSS layout** — Confirm the expected behavior on a clean checkout.
 - **book cards** — Verify that links and references still resolve.
 - **book cards** — Confirm the expected behavior on a clean checkout.
+- **deployment** — Use the existing project patterns when extending this area.
