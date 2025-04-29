@@ -681,3 +681,4 @@ cancelFormBtn.addEventListener('click', () => {
 - **JavaScript logic** — Check the required environment values before deploying.
 - **CSS layout** — Confirm the expected behavior on a clean checkout.
 - **book cards** — Verify that links and references still resolve.
+- **book cards** — Confirm the expected behavior on a clean checkout.
