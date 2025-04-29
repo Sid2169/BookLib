@@ -680,3 +680,4 @@ cancelFormBtn.addEventListener('click', () => {
 - **HTML structure** — Check the layout when the catalog is empty.
 - **JavaScript logic** — Check the required environment values before deploying.
 - **CSS layout** — Confirm the expected behavior on a clean checkout.
+- **book cards** — Verify that links and references still resolve.
