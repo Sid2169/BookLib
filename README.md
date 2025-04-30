@@ -685,3 +685,4 @@ cancelFormBtn.addEventListener('click', () => {
 - **deployment** — Use the existing project patterns when extending this area.
 - **HTML structure** — Add a screenshot or example when it clarifies the workflow.
 - **book catalog** — Update the documentation if the visible behavior changes.
+- **HTML structure** — Keep commands copy-pasteable for new contributors.
