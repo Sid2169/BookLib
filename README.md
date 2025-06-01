@@ -686,3 +686,4 @@ cancelFormBtn.addEventListener('click', () => {
 - **HTML structure** — Add a screenshot or example when it clarifies the workflow.
 - **book catalog** — Update the documentation if the visible behavior changes.
 - **HTML structure** — Keep commands copy-pasteable for new contributors.
+- **file structure** — Verify the change in both development and production builds.
