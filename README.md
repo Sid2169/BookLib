@@ -688,3 +688,4 @@ cancelFormBtn.addEventListener('click', () => {
 - **HTML structure** — Keep commands copy-pasteable for new contributors.
 - **file structure** — Verify the change in both development and production builds.
 - **usage instructions** — Keep the terminology consistent with the rest of the project.
+- **HTML structure** — Keep the terminology consistent with the rest of the project.
