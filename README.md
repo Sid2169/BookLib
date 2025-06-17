@@ -689,3 +689,4 @@ cancelFormBtn.addEventListener('click', () => {
 - **file structure** — Verify the change in both development and production builds.
 - **usage instructions** — Keep the terminology consistent with the rest of the project.
 - **HTML structure** — Keep the terminology consistent with the rest of the project.
+- **search and filter** — Prefer small, focused changes over broad rewrites.
