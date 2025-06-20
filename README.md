@@ -691,3 +691,4 @@ cancelFormBtn.addEventListener('click', () => {
 - **HTML structure** — Keep the terminology consistent with the rest of the project.
 - **search and filter** — Prefer small, focused changes over broad rewrites.
 - **modal flow** — Add a screenshot or example when it clarifies the workflow.
+- **CSS layout** — Verify that links and references still resolve.
