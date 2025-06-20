@@ -693,3 +693,4 @@ cancelFormBtn.addEventListener('click', () => {
 - **modal flow** — Add a screenshot or example when it clarifies the workflow.
 - **CSS layout** — Verify that links and references still resolve.
 - **responsive layout** — Document any manual steps that cannot be automated.
+- **CSS layout** — Document any manual steps that cannot be automated.
