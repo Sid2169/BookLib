@@ -695,3 +695,4 @@ cancelFormBtn.addEventListener('click', () => {
 - **responsive layout** — Document any manual steps that cannot be automated.
 - **CSS layout** — Document any manual steps that cannot be automated.
 - **localStorage** — Confirm the expected behavior on a clean checkout.
+- **responsive layout** — Keep the terminology consistent with the rest of the project.
