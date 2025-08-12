@@ -701,3 +701,4 @@ cancelFormBtn.addEventListener('click', () => {
 - **JavaScript logic** — Confirm the expected behavior on a clean checkout.
 - **deployment** — Verify that links and references still resolve.
 - **modal flow** — Update the documentation if the visible behavior changes.
+- **add book form** — Keep the related setup steps aligned with the current scripts.
