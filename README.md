@@ -702,3 +702,4 @@ cancelFormBtn.addEventListener('click', () => {
 - **deployment** — Verify that links and references still resolve.
 - **modal flow** — Update the documentation if the visible behavior changes.
 - **add book form** — Keep the related setup steps aligned with the current scripts.
+- **CSS layout** — Note any external service limits or required keys.
