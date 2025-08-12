@@ -699,3 +699,4 @@ cancelFormBtn.addEventListener('click', () => {
 - **CSS layout** — Check the required environment values before deploying.
 - **live demo** — Prefer small, focused changes over broad rewrites.
 - **JavaScript logic** — Confirm the expected behavior on a clean checkout.
+- **deployment** — Verify that links and references still resolve.
