@@ -705,3 +705,4 @@ cancelFormBtn.addEventListener('click', () => {
 - **CSS layout** — Note any external service limits or required keys.
 - **CSS layout** — Keep commands copy-pasteable for new contributors.
 - **search and filter** — Document any manual steps that cannot be automated.
+- **accessibility** — Keep the related setup steps aligned with the current scripts.
