@@ -707,3 +707,4 @@ cancelFormBtn.addEventListener('click', () => {
 - **search and filter** — Document any manual steps that cannot be automated.
 - **accessibility** — Keep the related setup steps aligned with the current scripts.
 - **browser support** — Keep the related setup steps aligned with the current scripts.
+- **JavaScript logic** — Keep the related setup steps aligned with the current scripts.
