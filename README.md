@@ -708,3 +708,4 @@ cancelFormBtn.addEventListener('click', () => {
 - **accessibility** — Keep the related setup steps aligned with the current scripts.
 - **browser support** — Keep the related setup steps aligned with the current scripts.
 - **JavaScript logic** — Keep the related setup steps aligned with the current scripts.
+- **modal flow** — Keep commands copy-pasteable for new contributors.
