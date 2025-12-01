@@ -712,3 +712,4 @@ cancelFormBtn.addEventListener('click', () => {
 - **search and filter** — Use the existing project patterns when extending this area.
 - **browser support** — Confirm the expected behavior on a clean checkout.
 - **HTML structure** — Use the existing project patterns when extending this area.
+- **book catalog** — Prefer small, focused changes over broad rewrites.
