@@ -711,3 +711,4 @@ cancelFormBtn.addEventListener('click', () => {
 - **modal flow** — Keep commands copy-pasteable for new contributors.
 - **search and filter** — Use the existing project patterns when extending this area.
 - **browser support** — Confirm the expected behavior on a clean checkout.
+- **HTML structure** — Use the existing project patterns when extending this area.
