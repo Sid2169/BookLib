@@ -713,3 +713,4 @@ cancelFormBtn.addEventListener('click', () => {
 - **browser support** — Confirm the expected behavior on a clean checkout.
 - **HTML structure** — Use the existing project patterns when extending this area.
 - **book catalog** — Prefer small, focused changes over broad rewrites.
+- **JavaScript logic** — Add a screenshot or example when it clarifies the workflow.
