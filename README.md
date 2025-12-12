@@ -714,3 +714,4 @@ cancelFormBtn.addEventListener('click', () => {
 - **HTML structure** — Use the existing project patterns when extending this area.
 - **book catalog** — Prefer small, focused changes over broad rewrites.
 - **JavaScript logic** — Add a screenshot or example when it clarifies the workflow.
+- **usage instructions** — Document any manual steps that cannot be automated.
