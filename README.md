@@ -4,6 +4,10 @@
 
 A simple web application for managing a personal library of books. Users can add new books, toggle their read status, and delete them from the library.
 
+## Developer
+
+Developed by [Siddhartha Singh](https://sidsingh.vercel.app/). Visit his portfolio to explore more projects and get in touch.
+
 ---
 
 ## Live Demo
@@ -52,7 +56,7 @@ The project demonstrates **DOM manipulation**, **event handling**, and **basic d
 - **Local Storage**: Saves your library in the browser so books, read status, and deletions persist across page refreshes.
 - **Scrollable Books Area**: The book grid scrolls independently while the header and footer stay in place.
 - **Sticky Header**: Header remains visible while scrolling.
-- **Fixed Footer**: Footer with social links (GitHub & LinkedIn) pinned near the bottom.
+- **Fixed Footer**: Footer with a developer portfolio credit and social links (GitHub & LinkedIn) pinned near the bottom.
 
 ---
 

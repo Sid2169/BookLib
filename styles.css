@@ -353,6 +353,29 @@ header {
     border-radius: 8px;
 }
 
+.footer-credit {
+    margin: 0 0 12px;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.creator-link {
+    color: #94D5C9;
+    font-weight: bold;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    border-radius: 3px;
+}
+
+.creator-link:hover {
+    color: #FDECDD;
+}
+
+.creator-link:focus-visible {
+    outline: 2px solid #F9F2DF;
+    outline-offset: 4px;
+}
+
 .footer-text {
     font-size: 18px;
     margin-bottom: 10px;
@@ -408,4 +431,3 @@ header {
 .footer-link:hover i {
     color: #2B4A44; /* Darker green */
 }
-
