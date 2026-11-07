@@ -56,6 +56,32 @@ function saveLibrary() {
 
 const myLibrary = loadLibrary(); //Array for my library
 
+//Books added the first time the library is opened
+const SEED_BOOKS = [
+    { title: 'Computer Science: An Interdisciplinary Approach', author: 'Robert Sedgewick', pages: 1168, read: false },
+    { title: 'An Introduction to Computing Systems', author: 'Yale N. Patt', pages: 772, read: false },
+    { title: 'Concrete Mathematics', author: 'Donald E. Knuth', pages: 657, read: false },
+    { title: '1984', author: 'George Orwell', pages: 328, read: false },
+    { title: 'Crime and Punishment', author: 'Fyodor Dostoevsky', pages: 671, read: false },
+];
+
+//Seed the library only when no saved library exists yet
+function seedLibraryIfEmpty() {
+    try {
+        if (localStorage.getItem(STORAGE_KEY) !== null) return;
+
+        SEED_BOOKS.forEach((book) => {
+            myLibrary.push(new Book(book.title, book.author, book.pages, book.read));
+        });
+        saveLibrary();
+    }
+    catch (error) {
+        console.error('Could not seed library:', error);
+    }
+}
+
+seedLibraryIfEmpty();
+
 //Add book to library function
 function addBookToLibrary(title, author, pages, read) {
     const newBook = new Book(title, author, pages, read);
