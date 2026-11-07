@@ -35,9 +35,9 @@ Visit the **live version** of this project here:
 **My Books** is a single-page application that lets you:
 
 - Add books with a title, author, page count, and read status.
+- Edit the details of any existing book.
 - Toggle the read status of any book.
 - Delete a book from your library with a confirmation popup.
-- View a sample book as a quick example of the interface.
 
 The project demonstrates **DOM manipulation**, **event handling**, and **basic data management** using an array.
 
@@ -47,9 +47,10 @@ The project demonstrates **DOM manipulation**, **event handling**, and **basic d
 
 - **Add New Book**: Opens a form overlay to enter book details.
 - **Read Toggle**: Switch-like button indicating whether the book is read.
+- **Edit Book**: Opens the form pre-filled with the book's details so they can be updated.
 - **Delete Confirmation**: Popup that asks for confirmation before removing a book.
 - **Local Storage**: Saves your library in the browser so books, read status, and deletions persist across page refreshes.
-- **Sample Book**: Pre-existing example to show how the UI behaves.
+- **Scrollable Books Area**: The book grid scrolls independently while the header and footer stay in place.
 - **Sticky Header**: Header remains visible while scrolling.
 - **Fixed Footer**: Footer with social links (GitHub & LinkedIn) pinned near the bottom.
 
@@ -75,7 +76,8 @@ The project demonstrates **DOM manipulation**, **event handling**, and **basic d
 3. **Fill in the form** (title, author, pages, and optionally mark as “Read”).
 4. **Submit** the form to see a new book card in the library.
 5. **Toggle** the read button on any book card to switch its status.
-6. **Delete** a book by clicking the trash icon button and confirming the deletion in the popup.
+6. **Edit** a book by clicking the pen button, updating the form, and saving your changes.
+7. **Delete** a book by clicking the trash icon button and confirming the deletion in the popup.
 
 ---
 
@@ -100,16 +102,7 @@ The project demonstrates **DOM manipulation**, **event handling**, and **basic d
     </header>
 
     <!-- Book Cards Container -->
-    <div class="container">
-        <!-- Sample Book -->
-        <div id="sampleBook" class="card">
-            <div class="title">Sample Book:)</div>
-            <div class="author">Author : Ead Adyreal</div>
-            <div class="pages">Total Pages :100001111001</div>
-            <button class="read toggled tool-tip" data-tooltip="Read Book Toggle"></button>
-            <button class="delete tool-tip" data-tooltip="Delete-Book"></button>
-        </div>
-    </div>
+    <div class="container"></div>
 
     <!-- Translucent Overlay for Form & Popups -->
     <div class="translucent-overlay hidden">
@@ -191,7 +184,9 @@ html {
 body {
     background-color: #94D5C9;
     padding: 8px;
-    min-height: 100vh;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
     border-radius: 4px;
     box-sizing: border-box;
 }
@@ -236,6 +231,10 @@ header {
     display: grid;
     gap: 0.8rem;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    align-content: start;
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
 }
 
 /* Individual book card */
@@ -435,10 +434,7 @@ header {
     text-align: center;
     color: #DBEAEF;
     font-family: Arial, sans-serif;
-    position: fixed;
-    bottom: 8px;
-    left: 16px;
-    right: 16px;
+    margin: 8px 8px 0;
     box-shadow: 4px -2px 10px rgba(0, 0, 0, 0.5);
     border-radius: 8px;
 }
@@ -488,6 +484,7 @@ header {
 
 - **Color Palette**: `#2B4A44`, `#94D5C9`, `#DBEAEF`, `#FDECDD`, `#F9F2DF`.
 - **Responsive Grid** for displaying book cards.
+- **Scrollable Book Grid**: The `.container` flexes to fill the space between header and footer and scrolls independently.
 - **Overlay** approach to show/hide form and popups with `.hidden`.
 - **Switch-like toggle** for the read button.
 
@@ -607,26 +604,6 @@ bookForm.addEventListener('submit', (event) => {
 });
 
 // =======================
-// SAMPLE BOOK TOGGLE/DELETE
-// =======================
-const sampleBook = document.getElementById('sampleBook');
-const sampleBookReadToggle = sampleBook.querySelector('.read');
-sampleBookReadToggle.addEventListener('click', () => {
-    sampleBookReadToggle.classList.toggle('toggled');
-});
-const sampleBookDel = sampleBook.querySelector('.delete');
-sampleBookDel.addEventListener('click', () => {
-    translucentOverlay.classList.remove('hidden');
-    popup.classList.remove('hidden');
-    const cnfrmDelBtn = document.getElementById('confirmDelete');
-    cnfrmDelBtn.addEventListener('click', () => {
-        sampleBook.remove();
-        translucentOverlay.classList.add('hidden');
-        popup.classList.add('hidden');
-    });
-});
-
-// =======================
 // CANCEL FORM BUTTON
 // =======================
 const cancelFormBtn = document.querySelector('.cancel-btn');
@@ -644,8 +621,8 @@ cancelFormBtn.addEventListener('click', () => {
 - **`Book` constructor** generates a unique `bookId` by combining title, author, pages, and current time.
 - **Adding Books**: Submitting the form creates a new book object, pushes it to `myLibrary`, and creates a corresponding card in `.container`.
 - **Read Toggle**: The `.read` button toggles the `toggled` class and the `read` property.
+- **Edit Book**: Clicking the `.edit` button pre-fills the form, and submitting updates the existing book object and its card in place.
 - **Delete Confirmation**: Clicking the `.delete` button opens a confirmation popup; if confirmed, the book is removed from both the DOM and the array.
-- **Sample Book**: Demonstrates the same toggle/delete logic.
 
 ---
 
@@ -654,16 +631,15 @@ cancelFormBtn.addEventListener('click', () => {
 - **Color Scheme**: Modify colors in `styles.css` under the `:root` or directly in the CSS rules.
 - **Font Awesome Icons**: Change the icons by updating class names (e.g., `fa-brands fa-github`).
 - **Overlay Behavior**: Adjust how forms and popups appear by changing the `.hidden` class and transitions.
-- **Footer Position**: Currently fixed near the bottom. Remove or change the CSS if you want a standard static footer.
+- **Footer Position**: The footer sits below the scrollable book grid. Adjust the flex layout if you want a different arrangement.
 
 ---
 
 ## Potential Enhancements
 
-1. **Edit Book**: Add a button to edit book details.
-2. **Search/Filter**: Implement a search bar to filter books by title or author.
-3. **Sort Books**: Sort by title, author, or read status.
-4. **Better UI/UX**: Add animations, improve form design, or use a modal library.
+1. **Search/Filter**: Implement a search bar to filter books by title or author.
+2. **Sort Books**: Sort by title, author, or read status.
+3. **Better UI/UX**: Add animations, improve form design, or use a modal library.
 
 ---
 

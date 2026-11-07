@@ -2,10 +2,31 @@
 const translucentOverlay = document.querySelector('.translucent-overlay');
 const formContainer = document.querySelector('.form-container');
 const addNewBtn = document.getElementById('addBook');
+const formTitle = document.getElementById('formTitle');
+const submitBtn = document.getElementById('submitBtn');
+const bookForm = document.getElementById('bookForm');
+const bookTitleInput = document.getElementById('bookTitle');
+const authorInput = document.getElementById('author');
+const pagesInput = document.getElementById('pages');
+const readCheckbox = document.getElementById('readCheckbox');
 
-addNewBtn.addEventListener('click', () => {
+let editingBookId = null;
+
+function showBookForm() {
     formContainer.classList.remove('hidden');
     translucentOverlay.classList.remove('hidden');
+}
+
+function resetBookForm() {
+    bookForm.reset();
+    editingBookId = null;
+    formTitle.textContent = 'Add a New Book';
+    submitBtn.textContent = 'Submit';
+}
+
+addNewBtn.addEventListener('click', () => {
+    resetBookForm();
+    showBookForm();
 });
 
 //SUBMIT NEW BOOK FUNCTIONALITY
@@ -146,11 +167,31 @@ function createBookCard(book) {
     deleteBtn.classList.add('delete', 'tool-tip');
     deleteBtn.dataset.tooltip = 'Delete-Book';
 
+    const editBtn = document.createElement('button');
+    editBtn.classList.add('edit', 'tool-tip');
+    editBtn.dataset.tooltip = 'Edit Book';
+
+    const editIcon = document.createElement('i');
+    editIcon.classList.add('fa-solid', 'fa-pen');
+    editBtn.appendChild(editIcon);
+
     //Functionality for readToggle button
     readToggle.addEventListener('click', () => {
         book.read = !book.read;
         readToggle.classList.toggle('toggled');
         saveLibrary();
+    });
+
+    //Functionality for edit book button
+    editBtn.addEventListener('click', () => {
+        editingBookId = book.bookId;
+        bookTitleInput.value = book.title;
+        authorInput.value = book.author;
+        pagesInput.value = book.pages;
+        readCheckbox.checked = book.read;
+        formTitle.textContent = 'Edit Book';
+        submitBtn.textContent = 'Save Changes';
+        showBookForm();
     });
 
     //Functionality for delete book button
@@ -165,30 +206,52 @@ function createBookCard(book) {
         });
     });
 
-    card.append(title, author, pages, readToggle, deleteBtn);
+    const actions = document.createElement('div');
+    actions.classList.add('card-actions');
+    actions.append(readToggle, editBtn, deleteBtn);
+
+    card.append(title, author, pages, actions);
     return card;
 }
 
 //Functionality for form submit action
-const bookForm = document.getElementById('bookForm');
-
 bookForm.addEventListener('submit', (event) => {
     event.preventDefault() //prevents page refresh
 
-    //Propertiy values for generaing new book object
-    let title = document.getElementById('bookTitle').value;
-    let author = document.getElementById('author').value;
-    let pages = document.getElementById('pages').value;
-    let read = document.getElementById('readCheckbox').checked;
+    const title = bookTitleInput.value;
+    const author = authorInput.value;
+    const pages = pagesInput.value;
+    const read = readCheckbox.checked;
 
-    //Add new book object to myLibrary array and persist it
-    const newlyGeneratedBook = addBookToLibrary(title, author, pages, read);
+    if (editingBookId) {
+        //Update the existing book and refresh its card in place
+        const book = myLibrary.find(item => item.bookId === editingBookId);
+        if (book) {
+            book.title = title;
+            book.author = author;
+            book.pages = pages;
+            book.read = read;
 
-    //Generate New Card for the newly added book and append it
-    cardContainer.appendChild(createBookCard(newlyGeneratedBook));
+            const card = document.getElementById(book.bookId);
+            if (card) {
+                card.querySelector('.title').textContent = book.title;
+                card.querySelector('.author').textContent = `Author :${book.author}`;
+                card.querySelector('.pages').textContent = `Total Pages : ${book.pages}`;
+                card.querySelector('.read').classList.toggle('toggled', book.read);
+            }
+            saveLibrary();
+        }
+    }
+    else {
+        //Add new book object to myLibrary array and persist it
+        const newlyGeneratedBook = addBookToLibrary(title, author, pages, read);
+
+        //Generate New Card for the newly added book and append it
+        cardContainer.appendChild(createBookCard(newlyGeneratedBook));
+    }
 
     //Reset and hide form after submission
-    bookForm.reset();
+    resetBookForm();
     formContainer.classList.add('hidden');
     translucentOverlay.classList.add('hidden');
 });
@@ -198,30 +261,11 @@ myLibrary.forEach((book) => {
     cardContainer.appendChild(createBookCard(book));
 });
 
-//SAMPEL BOOK CONTROLS
-
-//Sample Book Read Toggle
-const sampleBook = document.getElementById('sampleBook');
-const sampleBookReadToggle = sampleBook.querySelector('.read');
-sampleBookReadToggle.addEventListener('click', () => {
-    if (!sampleBookReadToggle.classList.contains('toggled')) {
-        sampleBookReadToggle.classList.add('toggled');
-    }
-    else {
-        sampleBookReadToggle.classList.remove('toggled');
-    }
-})
-//Sample Book Delete button
-const sampleBookDel = sampleBook.querySelector('.delete');
-sampleBookDel.addEventListener('click', () => {
-    openDeleteConfirmation(() => sampleBook.remove());
-});
-
 //Form Cacel Button
 const cancelFormBtn = document.querySelector('.cancel-btn');
 cancelFormBtn.addEventListener('click', () => {
-     //Reset and hide form after submission
-     bookForm.reset();
+     //Reset and hide form
+     resetBookForm();
      formContainer.classList.add('hidden');
      translucentOverlay.classList.add('hidden');
 })
