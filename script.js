@@ -10,7 +10,7 @@ addNewBtn.addEventListener('click', () => {
 
 //SUBMIT NEW BOOK FUNCTIONALITY
 
-const myLibrary = []; //Array for my library
+const STORAGE_KEY = 'bookLib.library';
 
 //Book object constructor
 function Book(title, author, pages, read) {
@@ -23,21 +23,125 @@ function Book(title, author, pages, read) {
     this.bookId = `${title.replace(/\s+/g, "_")}-${author.replace(/\s+/g, "_")}-${pages}-${Date.now()}`;
 }
 
+//Load saved books from localStorage
+function loadLibrary() {
+    try {
+        const savedLibrary = localStorage.getItem(STORAGE_KEY);
+        if (!savedLibrary) return [];
+
+        const parsedLibrary = JSON.parse(savedLibrary);
+        if (!Array.isArray(parsedLibrary)) return [];
+
+        return parsedLibrary.map((book) => {
+            const restoredBook = new Book(book.title, book.author, book.pages, book.read);
+            restoredBook.bookId = book.bookId;
+            return restoredBook;
+        });
+    }
+    catch (error) {
+        console.error('Could not load library from localStorage:', error);
+        return [];
+    }
+}
+
+//Persist myLibrary to localStorage
+function saveLibrary() {
+    try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(myLibrary));
+    }
+    catch (error) {
+        console.error('Could not save library to localStorage:', error);
+    }
+}
+
+const myLibrary = loadLibrary(); //Array for my library
+
 //Add book to library function
 function addBookToLibrary(title, author, pages, read) {
     const newBook = new Book(title, author, pages, read);
     myLibrary.push(newBook);
+    saveLibrary();
+    return newBook;
 }
 
 const cardContainer = document.querySelector('.container');
 
-//Functionality for cancel delete button of delete confirmation popup
+//Functionality for delete confirmation popup
 const popup = document.querySelector('.popup-content');
 const cancelDelBtn = document.getElementById('cancelDelete');
-cancelDelBtn.addEventListener('click', () => {
+const confirmDelBtn = document.getElementById('confirmDelete');
+let pendingDelete = null;
+
+function openDeleteConfirmation(onConfirm) {
+    pendingDelete = onConfirm;
+    translucentOverlay.classList.remove('hidden');
+    popup.classList.remove('hidden');
+}
+
+function closeDeleteConfirmation() {
+    pendingDelete = null;
     translucentOverlay.classList.add('hidden');
     popup.classList.add('hidden');
-})
+}
+
+cancelDelBtn.addEventListener('click', closeDeleteConfirmation);
+
+confirmDelBtn.addEventListener('click', () => {
+    if (pendingDelete) pendingDelete();
+    closeDeleteConfirmation();
+});
+
+//Generate a card for a book and wire up its controls
+function createBookCard(book) {
+    const card = document.createElement('div');
+    card.classList.add('card');
+    card.id = book.bookId;
+
+    const title = document.createElement('div');
+    title.classList.add('title');
+    title.textContent = book.title;
+
+    const author = document.createElement('div');
+    author.classList.add('author');
+    author.textContent = `Author :${book.author}`;
+
+    const pages = document.createElement('div');
+    pages.classList.add('pages');
+    pages.textContent = `Total Pages : ${book.pages}`;
+
+    const readToggle = document.createElement('button');
+    readToggle.classList.add('read', 'tool-tip');
+    readToggle.dataset.tooltip = 'Read Book Toggle';
+    if (book.read) {
+        readToggle.classList.add('toggled');
+    }
+
+    const deleteBtn = document.createElement('button');
+    deleteBtn.classList.add('delete', 'tool-tip');
+    deleteBtn.dataset.tooltip = 'Delete-Book';
+
+    //Functionality for readToggle button
+    readToggle.addEventListener('click', () => {
+        book.read = !book.read;
+        readToggle.classList.toggle('toggled');
+        saveLibrary();
+    });
+
+    //Functionality for delete book button
+    deleteBtn.addEventListener('click', () => {
+        openDeleteConfirmation(() => {
+            const index = myLibrary.findIndex(item => item.bookId === book.bookId);
+            if (index !== -1) {
+                myLibrary.splice(index, 1);
+            }
+            card.remove();
+            saveLibrary();
+        });
+    });
+
+    card.append(title, author, pages, readToggle, deleteBtn);
+    return card;
+}
 
 //Functionality for form submit action
 const bookForm = document.getElementById('bookForm');
@@ -45,67 +149,27 @@ const bookForm = document.getElementById('bookForm');
 bookForm.addEventListener('submit', (event) => {
     event.preventDefault() //prevents page refresh
 
-    //Propertiy values for generaing new book object 
+    //Propertiy values for generaing new book object
     let title = document.getElementById('bookTitle').value;
     let author = document.getElementById('author').value;
     let pages = document.getElementById('pages').value;
     let read = document.getElementById('readCheckbox').checked;
 
-    addBookToLibrary(title, author, pages, read);//Add new book object to myLibrary array
-    const newlyGeneratedBook = myLibrary[myLibrary.length - 1];
+    //Add new book object to myLibrary array and persist it
+    const newlyGeneratedBook = addBookToLibrary(title, author, pages, read);
 
-    //Generate New Card for the newly added book in myLibrary
-    const newCard = document.createElement('div');
-    newCard.classList.add('card');
-    const newCardId = newlyGeneratedBook.bookId;
-    newCard.id = newCardId;
-    newCard.innerHTML =
-        `   <div class="title">${title}</div>
-            <div class="author">Author :${author}</div>
-            <div class="pages">Total Pages : ${pages}</div>
-            <button class="read tool-tip" data-tooltip="Read Book Toggle"></button>
-            <button class="delete tool-tip" data-tooltip="Delete-Book"></button>`
-
-    cardContainer.appendChild(newCard);//Appending the new card to card container
-
-    //Functionality for readToggle button
-    const readToggle = newCard.querySelector('.read');
-    if (newlyGeneratedBook.read) {
-        readToggle.classList.add('toggled');
-    }
-
-    readToggle.addEventListener('click', () => {
-        if (!newlyGeneratedBook.read) {
-            newlyGeneratedBook.read = true;
-            readToggle.classList.add('toggled');
-        }
-        else {
-            newlyGeneratedBook.read = false;
-            readToggle.classList.remove('toggled');
-        }
-    });
-
-    //Functionality for delete book button
-    const deleteBtn = newCard.querySelector(`.delete`);
-    deleteBtn.addEventListener('click', () => {
-        let index = myLibrary.findIndex(book => book.bookId === newCardId);
-        //Show delete confirmation popup
-        translucentOverlay.classList.remove('hidden');
-        popup.classList.remove('hidden');
-        //Confirm delete button functionality
-        const cnfrmDelBtn = document.getElementById('confirmDelete');
-        cnfrmDelBtn.addEventListener('click', () => {
-            myLibrary.splice(index, 1);
-            newCard.remove();
-            translucentOverlay.classList.add('hidden');
-            popup.classList.add('hidden');
-        });
-    });
+    //Generate New Card for the newly added book and append it
+    cardContainer.appendChild(createBookCard(newlyGeneratedBook));
 
     //Reset and hide form after submission
     bookForm.reset();
     formContainer.classList.add('hidden');
     translucentOverlay.classList.add('hidden');
+});
+
+//Render any books previously saved in localStorage
+myLibrary.forEach((book) => {
+    cardContainer.appendChild(createBookCard(book));
 });
 
 //SAMPEL BOOK CONTROLS
@@ -124,16 +188,7 @@ sampleBookReadToggle.addEventListener('click', () => {
 //Sample Book Delete button
 const sampleBookDel = sampleBook.querySelector('.delete');
 sampleBookDel.addEventListener('click', () => {
-    //Show delete confirmation popup
-    translucentOverlay.classList.remove('hidden');
-    popup.classList.remove('hidden');
-    //Confirm delete button functionality
-    const cnfrmDelBtn = document.getElementById('confirmDelete');
-    cnfrmDelBtn.addEventListener('click', () => {
-        sampleBook.remove();
-        translucentOverlay.classList.add('hidden');
-        popup.classList.add('hidden');
-    });
+    openDeleteConfirmation(() => sampleBook.remove());
 });
 
 //Form Cacel Button

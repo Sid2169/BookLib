@@ -48,6 +48,7 @@ The project demonstrates **DOM manipulation**, **event handling**, and **basic d
 - **Add New Book**: Opens a form overlay to enter book details.
 - **Read Toggle**: Switch-like button indicating whether the book is read.
 - **Delete Confirmation**: Popup that asks for confirmation before removing a book.
+- **Local Storage**: Saves your library in the browser so books, read status, and deletions persist across page refreshes.
 - **Sample Book**: Pre-existing example to show how the UI behaves.
 - **Sticky Header**: Header remains visible while scrolling.
 - **Fixed Footer**: Footer with social links (GitHub & LinkedIn) pinned near the bottom.
@@ -659,11 +660,10 @@ cancelFormBtn.addEventListener('click', () => {
 
 ## Potential Enhancements
 
-1. **Local Storage**: Save `myLibrary` data so the book list persists after page refresh.
-2. **Edit Book**: Add a button to edit book details.
-3. **Search/Filter**: Implement a search bar to filter books by title or author.
-4. **Sort Books**: Sort by title, author, or read status.
-5. **Better UI/UX**: Add animations, improve form design, or use a modal library.
+1. **Edit Book**: Add a button to edit book details.
+2. **Search/Filter**: Implement a search bar to filter books by title or author.
+3. **Sort Books**: Sort by title, author, or read status.
+4. **Better UI/UX**: Add animations, improve form design, or use a modal library.
 
 ---
 
